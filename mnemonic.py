@@ -5,18 +5,6 @@ import random
 
 MARKOV_ORDER = 6 # markov chain order
 
-def gen_input(input_string):  # simple named mnemonic
-    # string cleanup, list conversion
-    word_list = input_string.split(' ')
-    for i in word_list:
-        i = i.lower()
-    first_letters = []
-
-    for i in word_list:  # strip first letter from each word
-        first_letters.append(i[0])
-
-    return first_letters
-
 def gen_dicts(tagged):
     markov_dict = defaultdict(dict)
     tag_dict = defaultdict(dict)
@@ -45,12 +33,6 @@ def gen_mnemonic(corpus_path, input_string):
     first_letters = gen_input(input_string)
     corpus = open(corpus_path, encoding='utf8').read()
     corpus = corpus.lower()
-
-    # text formatting
-
-    # tokenize and tag corpus
-    #tokenizer = nltk.RegexpTokenizer(r'\w+')
-    #tokens = tokenizer.tokenize(corpus)
 
     tokens = nltk.WhitespaceTokenizer().tokenize(corpus)
     for i in tokens:
